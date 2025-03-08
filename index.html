@@ -25,7 +25,7 @@
         <div class="d-flex align-items-center d-lg-none">
             <a href="#profile" class="profile-icon me-3"><i class="fas fa-user"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon "></span>
             </button>
         </div>
 
@@ -100,46 +100,207 @@
             <button class="btn btn-outline-primary filter-btn" data-category="data-ai">Data & AI</button>
         </div>
 
-        <div class="row g-4">
-            <!-- Service Items -->
+        <div class="row g-4" id="services-container">
+            <!-- Limited Services Initially Displayed -->
             <div class="col-md-6 col-lg-4 service-card" data-category="development">
-                <i class="fas fa-code"></i>
-                <h4>Web Development</h4>
-                <p>Learn to build modern, responsive, and dynamic websites.</p>
+                <i class="fas fa-laptop-code"></i>
+                <h4>Frontend Development</h4>
+                <p>Master the art of creating stunning, user-friendly, and responsive web interfaces using HTML, CSS, JavaScript, and modern frameworks like React.</p>
                 <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
             </div>
-
+            
             <div class="col-md-6 col-lg-4 service-card" data-category="development">
-                <i class="fas fa-mobile-alt"></i>
-                <h4>Mobile App Development</h4>
-                <p>Develop Android and iOS applications using Flutter, React Native, and more.</p>
+                <i class="fas fa-server"></i>
+                <h4>Backend Development</h4>
+                <p>Learn how to build powerful, secure, and scalable server-side applications using Node.js, Express, databases, and authentication techniques.</p>
                 <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
             </div>
+            
+            <div class="col-md-6 col-lg-4 service-card" data-category="development">
+                <i class="fas fa-code-branch"></i>
+                <h4>Full Stack Development</h4>
+                <p>Become a full-stack developer by mastering both frontend and backend technologies to build complete, end-to-end web applications.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+            
 
             <div class="col-md-6 col-lg-4 service-card" data-category="design">
                 <i class="fas fa-paint-brush"></i>
                 <h4>UI/UX Design</h4>
-                <p>Create stunning and user-friendly interfaces with design tools.</p>
+                <p>Learn to design intuitive and engaging user experiences using Figma, Adobe XD, and design principles.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 service-card" data-category="design">
+                <i class="fas fa-palette"></i>
+                <h4>Graphic Design</h4>
+                <p>Master the art of visual storytelling with Adobe Photoshop, Illustrator, and Canva for branding, marketing, and social media.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 service-card" data-category="design">
+                <i class="fas fa-video"></i>
+                <h4>Motion Graphics</h4>
+                <p>Learn to create stunning animations and video effects using After Effects and Premiere Pro.</p>
                 <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
             </div>
 
             <div class="col-md-6 col-lg-4 service-card" data-category="cybersecurity">
+                <i class="fas fa-user-secret"></i>
+                <h4>Ethical Hacking</h4>
+                <p>Learn penetration testing, vulnerability assessment, and how to secure systems from hackers.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 service-card" data-category="cybersecurity">
+                <i class="fas fa-network-wired"></i>
+                <h4>Network Security</h4>
+                <p>Master firewalls, encryption, and security protocols to protect networks from cyber attacks.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 service-card" data-category="cybersecurity">
                 <i class="fas fa-shield-alt"></i>
-                <h4>Cybersecurity</h4>
-                <p>Protect digital assets and learn ethical hacking skills.</p>
+                <h4>Cyber Threat Intelligence</h4>
+                <p>Understand how to detect, analyze, and prevent cyber threats using intelligence strategies.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+            
+            
+
+            <div class="col-md-6 col-lg-4 service-card" data-category="data-ai">
+                <i class="fas fa-chart-line"></i>
+                <h4>Data Science</h4>
+                <p>Learn how to analyze and visualize data using Python, SQL, and Power BI to make data-driven decisions.</p>
                 <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
             </div>
 
             <div class="col-md-6 col-lg-4 service-card" data-category="data-ai">
-                <i class="fas fa-chart-line"></i>
-                <h4>Data Science & AI</h4>
-                <p>Analyze data and build AI-powered applications.</p>
-                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+                 <i class="fas fa-robot"></i>
+                 <h4>Machine Learning</h4>
+                 <p>Master the fundamentals of machine learning with TensorFlow, Scikit-learn, and real-world projects.</p>
+                 <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+
+           <div class="col-md-6 col-lg-4 service-card" data-category="data-ai">
+                 <i class="fas fa-brain"></i>
+                 <h4>AI Development</h4>
+                 <p>Build AI-powered applications with deep learning, natural language processing, and computer vision.</p>
+                 <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+
+
+        
+        <!-- Load More Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" id="loadMore">View More Services</button>
+        </div>
+    </div>
+</section>
+
+<section class="why-choose-us py-5 bg-light text-dark">
+    <div class="container text-center">
+        <h2 class="section-title mb-4">Why <span class="highlight">Choose Us?</span></h2>
+        <p class="lead mb-5">We provide expert-led courses, hands-on training, and personalized mentorship to ensure your success.</p>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 rounded shadow-lg bg-secondary text-white">
+                    <i class="fas fa-user-tie fa-3x mb-3"></i>
+                    <h4>Expert Instructors</h4>
+                    <p>Learn from industry professionals with years of experience.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 rounded shadow-lg bg-secondary text-white">
+                    <i class="fas fa-laptop-code fa-3x mb-3"></i>
+                    <h4>Hands-On Learning</h4>
+                    <p>Practical projects and real-world applications to boost your skills.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 rounded shadow-lg bg-secondary text-white">
+                    <i class="fas fa-comments fa-3x mb-3"></i>
+                    <h4>Personalized Mentorship</h4>
+                    <p>Get one-on-one guidance tailored to your career goals.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
-<!-- End of services -->
+
+<!-- Testimonials Section -->
+<section class="testimonials py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="section-title">What Our Students Say</h2>
+        <p class="lead text-muted">Hear from our successful learners and professionals</p>
+
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Testimonial 1 -->
+                <div class="carousel-item active">
+                    <div class="testimonial-card mx-auto">
+                        <img src="student1.jpg" alt="Jane Doe" class="testimonial-img">
+                        <p class="testimonial-text">"The best learning experience ever! The mentors are amazing and truly care about student success."</p>
+                        <h5>Jane Doe</h5>
+                        <p class="text-muted">Web Developer</p>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="carousel-item">
+                    <div class="testimonial-card mx-auto">
+                        <img src="student2.jpg" alt="John Smith" class="testimonial-img">
+                        <p class="testimonial-text">"Helped me land my first tech job in just 3 months! The practical training is top-notch."</p>
+                        <h5>John Smith</h5>
+                        <p class="text-muted">Software Engineer</p>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="carousel-item">
+                    <div class="testimonial-card mx-auto">
+                        <img src="student3.jpg" alt="Emily Clark" class="testimonial-img">
+                        <p class="testimonial-text">"A game-changer! I learned UI/UX and now work at a top design agency."</p>
+                        <h5>Emily Clark</h5>
+                        <p class="text-muted">UI/UX Designer</p>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls 
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>-->
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Contact for Custom Services -->
+<section class="custom-services">
+    <div class="custom-services-box">
+        <h2 class="custom-services-title">Need Custom Tech Solutions?</h2>
+        <p class="custom-services-text">
+            We provide tailored solutions for individuals and businesses. Let's build something amazing together!
+        </p>
+        <a href="#contact" class="btn btn-primary btn-lg">Get a Free Consultation</a>
+    </div>
+</section>
+
+
+
+<!-- End of Services -->
+
 
 <!-- About Section -->
 <section class="about-section py-5" id="about">
@@ -229,7 +390,7 @@
 
 <!-- Sign Up & Sign In Section -->
 <!-- Sign In / Sign Up Section -->
-<section class="auth-section">
+<section class="auth-section" id="signup">
     <div class="auth-container">
         <h3 id="formTitle">Sign In</h3>
 
@@ -289,35 +450,35 @@
 <!-- End of SignUp | SignIn form -->
 
 <!-- Footer section -->
-<footer class="footer-section bg-dark text-white py-4">
+<footer class="footer-section">
     <div class="container">
-        <div class="row text-center">
+        <div class="row text-center text-md-start">
             <!-- Logo & About -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
                 <h4>FutureTech</h4>
                 <p>Your trusted partner for digital solutions.</p>
             </div>
 
             <!-- Social Media Icons -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4 mb-4 mb-md-0 text-center">
                 <h5>Follow Us</h5>
                 <div class="social-icons">
-                    <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="me-3"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
             <!-- Quick Links -->
-            <div class="col-md-4">
+            <div class="col-12 col-md-4 text-center text-md-start">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#home" class="text-white">Home</a></li>
-                    <li><a href="#about" class="text-white">About</a></li>
-                    <li><a href="#services" class="text-white">Services</a></li>
-                    <li><a href="#contact" class="text-white">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -330,38 +491,62 @@
 </footer>
 
 
-
+<!--search matches  keyword-->
 <script>
-    // Change navbar background on scroll
-    window.addEventListener("scroll", function () {
-        const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
+    document.querySelector(".search-form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent form submission
+    
+        let searchInput = document.getElementById("search-input").value.toLowerCase().trim();
+    
+        // Select all service elements
+        let serviceCards = document.querySelectorAll(".service-card");
+        let found = false;
+    
+        serviceCards.forEach(service => {
+            let serviceTitle = service.querySelector("h4").innerText.toLowerCase();
+    
+            // If the search term matches a service title, scroll to it
+            if (serviceTitle.includes(searchInput)) {
+                service.scrollIntoView({ behavior: "smooth", block: "start" });
+                found = true;
+            }
+        });
+    
+        // If no matching service is found, show an alert
+        if (!found) {
+            alert("No matching service found!");
         }
     });
-</script>
-
+    </script>
+    
+<!--search bar-->
 <script>
-    // List of sample courses for autocomplete
-    const courses = [
-        "Web Development", "JavaScript Basics", "Python for Beginners", "Advanced CSS",
-        "React.js Fundamentals", "Data Science with Python", "Machine Learning", "Cybersecurity Essentials",
-        "Digital Marketing", "Graphic Design", "Blockchain Technology", "UI/UX Design"
-    ];
 
+document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search-input");
     const autocompleteList = document.getElementById("autocomplete-list");
 
-    // Function to filter courses based on input
+    const courses = [
+        "Frontend Development", " Backend Development", "Full Stack Development",
+        "Graphic Design", "Motion Graphics", "UI/UX Design","Data Science","Machine Learning", 
+        "AI Development", "Ethical Hacking","Network Security", "Cyber Threat Intelligence", 
+    ];
+
     searchInput.addEventListener("input", function () {
         let query = this.value.toLowerCase();
         autocompleteList.innerHTML = "";
 
-        if (!query) return;
+        if (!query) {
+            autocompleteList.style.display = "none"; // Hide list when input is empty
+            return;
+        }
 
         let suggestions = courses.filter(course => course.toLowerCase().includes(query));
+
+        if (suggestions.length === 0) {
+            autocompleteList.style.display = "none"; // Hide list if no matches
+            return;
+        }
 
         suggestions.forEach(course => {
             let item = document.createElement("div");
@@ -370,75 +555,78 @@
             item.addEventListener("click", function () {
                 searchInput.value = course;
                 autocompleteList.innerHTML = "";
+                autocompleteList.style.display = "none";
             });
             autocompleteList.appendChild(item);
         });
+
+        autocompleteList.style.display = "block"; // Show list when there are matches
     });
 
     // Hide suggestions when clicking outside
     document.addEventListener("click", function (event) {
         if (!searchInput.contains(event.target) && !autocompleteList.contains(event.target)) {
-            autocompleteList.innerHTML = "";
+            autocompleteList.style.display = "none";
         }
-    });
-
-    // Change navbar background on scroll
-    window.addEventListener("scroll", function () {
-        const navbar = document.querySelector(".navbar");
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-    });
-</script>
-
-
-<!-- js navbar (search bar) section -->
- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    var navLinks = document.querySelectorAll(".nav-link");
-    var navCollapse = document.querySelector(".navbar-collapse");
-
-    navLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
-            if (window.innerWidth < 992) {
-                navCollapse.classList.remove("show"); // Close navbar after clicking a link
-            }
-        });
     });
 });
 
 </script>
-<!-- End of navbar js-->
 
+       <!-- JavaScript for Filtering and Load More -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const serviceCards = document.querySelectorAll(".service-card");
+    const loadMoreBtn = document.getElementById("loadMore");
+    let allServicesLoaded = false;
+    const itemsToShow = 3; // Number of items to show initially on mobile
 
-       <!-- js Services section -->          
-       <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const filterButtons = document.querySelectorAll(".filter-btn");
-            const serviceCards = document.querySelectorAll(".service-card");
-    
-            filterButtons.forEach(button => {
-                button.addEventListener("click", function () {
-                    const category = this.getAttribute("data-category");
-    
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove("active"));
-                    this.classList.add("active");
-    
-                    // Show/hide services based on category
-                    serviceCards.forEach(card => {
-                        if (category === "all" || card.getAttribute("data-category") === category) {
-                            card.style.display = "block";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
-                });
-            });
+    function updateServiceVisibility(category) {
+        let visibleCount = 0;
+
+        serviceCards.forEach(card => {
+            if (category === "all" || card.getAttribute("data-category") === category) {
+                if (visibleCount < itemsToShow) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+                visibleCount++;
+            } else {
+                card.classList.add("hidden");
+            }
         });
-    </script>
+
+        loadMoreBtn.style.display = (visibleCount > itemsToShow && window.innerWidth < 768) ? "block" : "none";
+    }
+
+    // Handle category filter clicks
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const category = this.getAttribute("data-category");
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            allServicesLoaded = false; // Reset flag
+            updateServiceVisibility(category);
+        });
+    });
+
+    // Load more services when button is clicked
+    loadMoreBtn.addEventListener("click", function () {
+        allServicesLoaded = true;
+        document.querySelectorAll(".service-card.hidden").forEach(card => card.classList.remove("hidden"));
+        loadMoreBtn.style.display = "none";
+    });
+
+    // Initialize visibility for mobile
+    if (window.innerWidth < 768) {
+        updateServiceVisibility("all");
+    }
+});
+
+</script>
 <!-- End of js service section -->
 
        <!-- js Contact form validation -->
