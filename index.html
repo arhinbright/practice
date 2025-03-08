@@ -3,51 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-    crossorigin="anonymous">
+    <title>Future Tech</title>
+    <!-- font style-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
 <body>
-   <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg py-3">
-    <div class="container-fluid">
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
         <!-- Logo -->
-        <a class="navbar-logo" href="#">Future<span class="logo-style">Tech</span></a>
+        <a class="navbar-brand" href="#">Future<span class="logo-style">Tech</span></a>
 
-        <!-- Toggler Button for Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navmenu"><span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- Profile Icon & Toggle -->
+        <div class="d-flex align-items-center d-lg-none">
+            <a href="#profile" class="profile-icon me-3"><i class="fas fa-user"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
 
-        <!-- Navbar Links and Search Bar -->
-        <div class="collapse navbar-collapse" id="navmenu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <!-- Navbar Links & Search Bar -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Centered Search Bar -->
+            <form class="d-flex search-form mx-lg-auto" autocomplete="off">
+                <div class="search-container">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search courses..." aria-label="Search">
+                    <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+                    <!-- Autocomplete Suggestions -->
+                    <div id="autocomplete-list" class="autocomplete-items"></div>
+                </div>
+            </form>
+
+            <!-- Navbar Links -->
+            <ul class="navbar-nav ms-lg-4">
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="#singup|singin">SignUp | SignIn</a></li>
             </ul>
 
-            <!-- Search Bar with Icon -->
-            <form class="d-flex search-form ms-3">
-                <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
-                <button class="search-btn" type="submit">
-                    <i class="fas fa-search"></i> <!-- Font Awesome Search Icon -->
-                </button>
-            </form>
+            <!-- Right-Side Links -->
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="#signup">SignUp</a></li>
+                <!-- Profile Icon (Only on Large Screens) -->
+                <li class="nav-item d-none d-lg-block">
+                    <a href="#profile" class="profile-icon"><i class="fas fa-user"></i></a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 <!-- Navbar End -->
+
  
 <!-- Hero Section -->
-<section class="hero-section d-flex align-items-center text-center text-light">
+<section class="hero-section d-flex align-items-center text-center text-light" id="home">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
@@ -58,7 +74,7 @@
                     programming courses. Build, innovate, and launch 
                     your tech career today!
                 </p>
-                <button class="btn btn-primary btn-lg">Get Started</button>
+                <a href="#signup-signin" class="btn btn-primary btn-lg">Enroll Now</a>
             </div>
         </div>
     </div>
@@ -66,14 +82,74 @@
 
 <!--End of Hero section -->
 
+
+<!-- Services Section with Filters -->
+<section class="services-section py-5 bg-light" id="services">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our <span class="highlight">Services</span></h2>
+            <p class="lead">We provide top-notch tech education to help you build a successful career in the digital world.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="text-center mb-4">
+            <button class="btn btn-primary filter-btn active" data-category="all">All</button>
+            <button class="btn btn-outline-primary filter-btn" data-category="development">Development</button>
+            <button class="btn btn-outline-primary filter-btn" data-category="design">Design</button>
+            <button class="btn btn-outline-primary filter-btn" data-category="cybersecurity">Cybersecurity</button>
+            <button class="btn btn-outline-primary filter-btn" data-category="data-ai">Data & AI</button>
+        </div>
+
+        <div class="row g-4">
+            <!-- Service Items -->
+            <div class="col-md-6 col-lg-4 service-card" data-category="development">
+                <i class="fas fa-code"></i>
+                <h4>Web Development</h4>
+                <p>Learn to build modern, responsive, and dynamic websites.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+
+            <div class="col-md-6 col-lg-4 service-card" data-category="development">
+                <i class="fas fa-mobile-alt"></i>
+                <h4>Mobile App Development</h4>
+                <p>Develop Android and iOS applications using Flutter, React Native, and more.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+
+            <div class="col-md-6 col-lg-4 service-card" data-category="design">
+                <i class="fas fa-paint-brush"></i>
+                <h4>UI/UX Design</h4>
+                <p>Create stunning and user-friendly interfaces with design tools.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+
+            <div class="col-md-6 col-lg-4 service-card" data-category="cybersecurity">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Cybersecurity</h4>
+                <p>Protect digital assets and learn ethical hacking skills.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+
+            <div class="col-md-6 col-lg-4 service-card" data-category="data-ai">
+                <i class="fas fa-chart-line"></i>
+                <h4>Data Science & AI</h4>
+                <p>Analyze data and build AI-powered applications.</p>
+                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of services -->
+
 <!-- About Section -->
-<section class="about-section py-5">
+<section class="about-section py-5" id="about">
     <div class="container">
         <div class="row align-items-center">
             <!-- Image Column -->
-            <div class="col-lg-6 text-center">
-                <img src="images/laptop.jpg" class="img-fluid rounded shadow" alt="About FutureTech">
+            <div class="col-lg-6">
+                <img src="images/data.jpg" class="w-100 rounded shadow" alt="FutureTech Team">
             </div>
+
             <!-- Text Column -->
             <div class="col-lg-6">
                 <h2 class="section-title">About <span class="highlight">FutureTech</span></h2>
@@ -91,13 +167,432 @@
         </div>
     </div>
 </section>
-<!-- End of Hero Section -->
+
+<!-- End of About Section -->
+
+<!-- Contact Section -->
+<section class="contact-section py-5" id="contact">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Get in <span class="highlight">Touch</span></h2>
+            <p class="lead">Have questions or need assistance? Contact us today!</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Contact Form -->
+            <div class="col-md-8">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Write your message" required></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="row mt-5 text-center">
+            <div class="col-md-4">
+                <i class="fas fa-phone fa-2x text-primary"></i>
+                <h5 class="mt-2">Call Us</h5>
+                <p>+233 123 456 789</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-envelope fa-2x text-primary"></i>
+                <h5 class="mt-2">Email</h5>
+                <p>info@futuretech.com</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                <h5 class="mt-2">Location</h5>
+                <p>Accra, Ghana</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End of contact section -->
+
+<!-- Sign Up & Sign In Section -->
+<!-- Sign In / Sign Up Section -->
+<section class="auth-section">
+    <div class="auth-container">
+        <h3 id="formTitle">Sign In</h3>
+
+        <!-- Toggle Buttons -->
+        <div class="tab-buttons">
+            <button id="showSignIn" class="btn btn-primary">Sign In</button>
+            <button id="showSignUp" class="btn btn-secondary">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signInForm">
+            <div class="mb-3">
+                <label for="signInEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="signInEmail" placeholder="Enter your email" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="mb-3">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signInPassword" placeholder="Enter your password" required>
+                <small class="error-message"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        </form>
+
+        <!-- Sign Up Form (Hidden Initially) -->
+        <form id="signUpForm" class="d-none">
+            <div class="mb-3">
+                <label for="signUpName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="signUpName" placeholder="Enter your full name" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="mb-3">
+                <label for="signUpEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="signUpEmail" placeholder="Enter your email" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="mb-3">
+                <label for="signUpPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signUpPassword" placeholder="Create a password" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                <small class="error-message"></small>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Sign Up</button>
+        </form>
+    </div>
+</section>
+<!-- End of SignUp | SignIn form -->
+
+<!-- Footer section -->
+<footer class="footer-section bg-dark text-white py-4">
+    <div class="container">
+        <div class="row text-center">
+            <!-- Logo & About -->
+            <div class="col-md-4">
+                <h4>FutureTech</h4>
+                <p>Your trusted partner for digital solutions.</p>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#home" class="text-white">Home</a></li>
+                    <li><a href="#about" class="text-white">About</a></li>
+                    <li><a href="#services" class="text-white">Services</a></li>
+                    <li><a href="#contact" class="text-white">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center mt-3">
+            <p class="mb-0">&copy; 2025 FutureTech. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
 
 
-              
-            
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+
+<script>
+    // Change navbar background on scroll
+    window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+</script>
+
+<script>
+    // List of sample courses for autocomplete
+    const courses = [
+        "Web Development", "JavaScript Basics", "Python for Beginners", "Advanced CSS",
+        "React.js Fundamentals", "Data Science with Python", "Machine Learning", "Cybersecurity Essentials",
+        "Digital Marketing", "Graphic Design", "Blockchain Technology", "UI/UX Design"
+    ];
+
+    const searchInput = document.getElementById("search-input");
+    const autocompleteList = document.getElementById("autocomplete-list");
+
+    // Function to filter courses based on input
+    searchInput.addEventListener("input", function () {
+        let query = this.value.toLowerCase();
+        autocompleteList.innerHTML = "";
+
+        if (!query) return;
+
+        let suggestions = courses.filter(course => course.toLowerCase().includes(query));
+
+        suggestions.forEach(course => {
+            let item = document.createElement("div");
+            item.classList.add("autocomplete-item");
+            item.innerHTML = course;
+            item.addEventListener("click", function () {
+                searchInput.value = course;
+                autocompleteList.innerHTML = "";
+            });
+            autocompleteList.appendChild(item);
+        });
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!searchInput.contains(event.target) && !autocompleteList.contains(event.target)) {
+            autocompleteList.innerHTML = "";
+        }
+    });
+
+    // Change navbar background on scroll
+    window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+</script>
+
+
+<!-- js navbar (search bar) section -->
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var navLinks = document.querySelectorAll(".nav-link");
+    var navCollapse = document.querySelector(".navbar-collapse");
+
+    navLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+            if (window.innerWidth < 992) {
+                navCollapse.classList.remove("show"); // Close navbar after clicking a link
+            }
+        });
+    });
+});
+
+</script>
+<!-- End of navbar js-->
+
+
+       <!-- js Services section -->          
+       <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const serviceCards = document.querySelectorAll(".service-card");
+    
+            filterButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const category = this.getAttribute("data-category");
+    
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove("active"));
+                    this.classList.add("active");
+    
+                    // Show/hide services based on category
+                    serviceCards.forEach(card => {
+                        if (category === "all" || card.getAttribute("data-category") === category) {
+                            card.style.display = "block";
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+<!-- End of js service section -->
+
+       <!-- js Contact form validation -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevents page reload
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (name === "" || email === "" || message === "") {
+                alert("Please fill in all fields before submitting.");
+            } else {
+                alert("Message sent successfully!");
+                form.reset(); // Clears the form
+            }
+        });
+    });
+</script>
+<!-- End of js Contact form validation -->
+
+       <!-- js SignUP | SignIn form validation -->
+      <!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const signInForm = document.getElementById("signInForm");
+        const signUpForm = document.getElementById("signUpForm");
+        const formTitle = document.getElementById("formTitle");
+        const showSignInBtn = document.getElementById("showSignIn");
+        const showSignUpBtn = document.getElementById("showSignUp");
+    
+        // Toggle between Sign In and Sign Up
+        showSignInBtn.addEventListener("click", function () {
+            signInForm.classList.remove("d-none");
+            signUpForm.classList.add("d-none");
+            formTitle.textContent = "Sign In";
+            showSignInBtn.classList.add("btn-primary");
+            showSignUpBtn.classList.remove("btn-primary");
+            showSignUpBtn.classList.add("btn-secondary");
+        });
+    
+        showSignUpBtn.addEventListener("click", function () {
+            signUpForm.classList.remove("d-none");
+            signInForm.classList.add("d-none");
+            formTitle.textContent = "Sign Up";
+            showSignUpBtn.classList.add("btn-primary");
+            showSignInBtn.classList.remove("btn-primary");
+            showSignInBtn.classList.add("btn-secondary");
+        });
+    
+        // Function to show errors
+        function showError(input, message) {
+            const errorSpan = input.nextElementSibling;
+            errorSpan.textContent = message;
+            input.classList.add("is-invalid");
+        }
+    
+        // Function to clear errors
+        function clearError(input) {
+            const errorSpan = input.nextElementSibling;
+            errorSpan.textContent = "";
+            input.classList.remove("is-invalid");
+        }
+    
+        // Email validation function
+        function validateEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+    
+        // Sign In Form Validation
+        signInForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            const email = document.getElementById("signInEmail");
+            const password = document.getElementById("signInPassword");
+            let valid = true;
+    
+            if (!validateEmail(email.value.trim())) {
+                showError(email, "Enter a valid email.");
+                valid = false;
+            } else {
+                clearError(email);
+            }
+    
+            if (password.value.trim().length < 6) {
+                showError(password, "Password must be at least 6 characters.");
+                valid = false;
+            } else {
+                clearError(password);
+            }
+    
+            if (valid) {
+                alert("Sign In successful!");
+                signInForm.reset();
+            }
+        });
+    
+        // Sign Up Form Validation
+        signUpForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            const fullName = document.getElementById("signUpName");
+            const email = document.getElementById("signUpEmail");
+            const password = document.getElementById("signUpPassword");
+            const confirmPassword = document.getElementById("confirmPassword");
+            let valid = true;
+    
+            if (fullName.value.trim().length < 3) {
+                showError(fullName, "Full Name must be at least 3 characters.");
+                valid = false;
+            } else {
+                clearError(fullName);
+            }
+    
+            if (!validateEmail(email.value.trim())) {
+                showError(email, "Enter a valid email.");
+                valid = false;
+            } else {
+                clearError(email);
+            }
+    
+            if (password.value.trim().length < 6) {
+                showError(password, "Password must be at least 6 characters.");
+                valid = false;
+            } else {
+                clearError(password);
+            }
+    
+            if (password.value.trim() !== confirmPassword.value.trim()) {
+                showError(confirmPassword, "Passwords do not match.");
+                valid = false;
+            } else {
+                clearError(confirmPassword);
+            }
+    
+            if (valid) {
+                alert("Sign Up successful!");
+                signUpForm.reset();
+            }
+        });
+    });
+    </script>
+    <!-- End of js SignUp | SignIn js form validation-->
+    
+
+        <!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+</script>
 </body>
 </html>
