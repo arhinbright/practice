@@ -44,23 +44,117 @@
             </form>
 
             <!-- Navbar Links -->
-            <ul class="navbar-nav ms-lg-4">
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
+<ul class="navbar-nav ms-lg-4">
+    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+</ul>
 
-            <!-- Right-Side Links -->
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link" href="#signup">SignUp</a></li>
-                <!-- Profile Icon (Only on Large Screens) -->
-                <li class="nav-item d-none d-lg-block">
-                    <a href="#profile" class="profile-icon"><i class="fas fa-user"></i></a>
-                </li>
-            </ul>
+<!-- Right-Side Links -->
+<ul class="navbar-nav ms-auto align-items-center">
+    <li class="nav-item">
+        <a class="nav-link" href="#signup" id="signup-link">SignUp</a>
+    </li>
+    <!-- Profile Icon (Only on Large Screens) -->
+    <li class="nav-item d-none d-lg-block">
+        <a href="#profile" class="profile-icon"><i class="fas fa-user"></i></a>
+    </li>
+</ul>
         </div>
     </div>
 </nav>
+
+<!-- JavaScript for Pop-Up -->
+<script>
+    document.getElementById("signup-link").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent default navigation
+        alert("If you already have an account, just log in.");
+        window.location.href = "#signup"; // Redirect to signup after the alert
+    });
+</script>
+<!-- inputs of a user -->
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("search-input");
+        const autocompleteList = document.getElementById("autocomplete-list");
+    
+        const courses = [
+            "Frontend Development", " Backend Development", "Full Stack Development",
+            "Graphic Design", "Motion Graphics", "UI/UX Design","Data Science","Machine Learning", 
+            "AI Development", "Ethical Hacking","Network Security", "Cyber Threat Intelligence", 
+        ];
+    
+        searchInput.addEventListener("input", function () {
+            let query = this.value.toLowerCase();
+            autocompleteList.innerHTML = "";
+    
+            if (!query) {
+                autocompleteList.style.display = "none"; // Hide list when input is empty
+                return;
+            }
+    
+            let suggestions = courses.filter(course => course.toLowerCase().includes(query));
+    
+            if (suggestions.length === 0) {
+                autocompleteList.style.display = "none"; // Hide list if no matches
+                return;
+            }
+    
+            suggestions.forEach(course => {
+                let item = document.createElement("div");
+                item.classList.add("autocomplete-item");
+                item.innerHTML = course;
+                item.addEventListener("click", function () {
+                    searchInput.value = course;
+                    autocompleteList.innerHTML = "";
+                    autocompleteList.style.display = "none";
+                });
+                autocompleteList.appendChild(item);
+            });
+    
+            autocompleteList.style.display = "block"; // Show list when there are matches
+        });
+    
+        // Hide suggestions when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!searchInput.contains(event.target) && !autocompleteList.contains(event.target)) {
+                autocompleteList.style.display = "none";
+            }
+        });
+    });
+    
+    </script>
+    <!-- end of js for user inputs-->
+
+<!--search matches  keyword-->
+<script>
+    document.querySelector(".search-form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent form submission
+    
+        let searchInput = document.getElementById("search-input").value.toLowerCase().trim();
+    
+        // Select all service elements
+        let serviceCards = document.querySelectorAll(".service-card");
+        let found = false;
+    
+        serviceCards.forEach(service => {
+            let serviceTitle = service.querySelector("h4").innerText.toLowerCase();
+    
+            // If the search term matches a service title, scroll to it
+            if (serviceTitle.includes(searchInput)) {
+                service.scrollIntoView({ behavior: "smooth", block: "start" });
+                found = true;
+            }
+        });
+    
+        // If no matching service is found, show an alert
+        if (!found) {
+            alert("No matching service found!");
+        }
+    });
+    </script>
+    <!-- End of search matches keyword -->
 <!-- Navbar End -->
 
  
@@ -76,13 +170,21 @@
                     programming courses. Build, innovate, and launch 
                     your tech career today!
                 </p>
-                <a href="#signup-signin" class="btn btn-primary btn-lg">Enroll Now</a>
+                <a href="#signup" class="btn btn-primary btn-lg" onclick="showSignupAlert()">Enroll Now</a>
             </div>
         </div>
     </div>
 </section>
 
-<!--End of Hero section -->
+<!-- JavaScript for Default Alert Popup -->
+<script>
+function showSignupAlert() {
+    alert("If you don't have an account, please sign up before proceeding.");
+}
+</script>
+
+<!-- End of Hero Section -->
+
 
 
 <!-- Services Section with Filters -->
@@ -108,7 +210,7 @@
                 <i class="fas fa-laptop-code"></i>
                 <h4>Frontend Development</h4>
                 <p>Master the art of creating stunning, user-friendly, and responsive web interfaces using HTML, CSS, JavaScript, and modern frameworks like React.</p>
-                <a href="#" class="btn btn-primary btn-sm mt-2">Learn More</a>
+                <a href="frontend.html" class="btn btn-primary btn-sm mt-2">Learn More</a>
             </div>
             
             <div class="col-md-6 col-lg-4 service-card" data-category="development">
@@ -286,8 +388,6 @@
     </div>
 </section>
 
-
-
 <!-- Contact for Custom Services -->
 <section class="custom-services">
     <div class="custom-services-box">
@@ -299,7 +399,61 @@
     </div>
 </section>
 
+<!-- JavaScript for Filtering and Load More -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const serviceCards = document.querySelectorAll(".service-card");
+    const loadMoreBtn = document.getElementById("loadMore");
+    let allServicesLoaded = false;
+    const itemsToShow = 3; // Number of items to show initially on mobile
 
+    function updateServiceVisibility(category) {
+        let visibleCount = 0;
+
+        serviceCards.forEach(card => {
+            if (category === "all" || card.getAttribute("data-category") === category) {
+                if (visibleCount < itemsToShow) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+                visibleCount++;
+            } else {
+                card.classList.add("hidden");
+            }
+        });
+
+        loadMoreBtn.style.display = (visibleCount > itemsToShow && window.innerWidth < 768) ? "block" : "none";
+    }
+
+    // Handle category filter clicks
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const category = this.getAttribute("data-category");
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            allServicesLoaded = false; // Reset flag
+            updateServiceVisibility(category);
+        });
+    });
+
+    // Load more services when button is clicked
+    loadMoreBtn.addEventListener("click", function () {
+        allServicesLoaded = true;
+        document.querySelectorAll(".service-card.hidden").forEach(card => card.classList.remove("hidden"));
+        loadMoreBtn.style.display = "none";
+    });
+
+    // Initialize visibility for mobile
+    if (window.innerWidth < 768) {
+        updateServiceVisibility("all");
+    }
+});
+
+</script>
+<!-- End of js service section -->
 
 <!-- End of Services -->
 
@@ -388,6 +542,29 @@
     </div>
 </section>
 
+ <!-- js Contact form validation -->
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevents page reload
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (name === "" || email === "" || message === "") {
+                alert("Please fill in all fields before submitting.");
+            } else {
+                alert("Message sent successfully!");
+                form.reset(); // Clears the form
+            }
+        });
+    });
+</script>
+<!-- End of js Contact form validation -->
+
 <!-- End of contact section -->
 
 <!-- Sign Up & Sign In Section -->
@@ -449,6 +626,130 @@
         </form>
     </div>
 </section>
+
+ <!-- js SignUP | SignIn form validation -->
+      <!-- JavaScript -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const signInForm = document.getElementById("signInForm");
+            const signUpForm = document.getElementById("signUpForm");
+            const formTitle = document.getElementById("formTitle");
+            const showSignInBtn = document.getElementById("showSignIn");
+            const showSignUpBtn = document.getElementById("showSignUp");
+        
+            // Toggle between Sign In and Sign Up
+            showSignInBtn.addEventListener("click", function () {
+                signInForm.classList.remove("d-none");
+                signUpForm.classList.add("d-none");
+                formTitle.textContent = "Sign In";
+                showSignInBtn.classList.add("btn-primary");
+                showSignUpBtn.classList.remove("btn-primary");
+                showSignUpBtn.classList.add("btn-secondary");
+            });
+        
+            showSignUpBtn.addEventListener("click", function () {
+                signUpForm.classList.remove("d-none");
+                signInForm.classList.add("d-none");
+                formTitle.textContent = "Sign Up";
+                showSignUpBtn.classList.add("btn-primary");
+                showSignInBtn.classList.remove("btn-primary");
+                showSignInBtn.classList.add("btn-secondary");
+            });
+        
+            // Function to show errors
+            function showError(input, message) {
+                const errorSpan = input.nextElementSibling;
+                errorSpan.textContent = message;
+                input.classList.add("is-invalid");
+            }
+        
+            // Function to clear errors
+            function clearError(input) {
+                const errorSpan = input.nextElementSibling;
+                errorSpan.textContent = "";
+                input.classList.remove("is-invalid");
+            }
+        
+            // Email validation function
+            function validateEmail(email) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailPattern.test(email);
+            }
+        
+            // Sign In Form Validation
+            signInForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+        
+                const email = document.getElementById("signInEmail");
+                const password = document.getElementById("signInPassword");
+                let valid = true;
+        
+                if (!validateEmail(email.value.trim())) {
+                    showError(email, "Enter a valid email.");
+                    valid = false;
+                } else {
+                    clearError(email);
+                }
+        
+                if (password.value.trim().length < 6) {
+                    showError(password, "Password must be at least 6 characters.");
+                    valid = false;
+                } else {
+                    clearError(password);
+                }
+        
+                if (valid) {
+                    alert("Sign In successful!");
+                    signInForm.reset();
+                }
+            });
+        
+            // Sign Up Form Validation
+            signUpForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+        
+                const fullName = document.getElementById("signUpName");
+                const email = document.getElementById("signUpEmail");
+                const password = document.getElementById("signUpPassword");
+                const confirmPassword = document.getElementById("confirmPassword");
+                let valid = true;
+        
+                if (fullName.value.trim().length < 3) {
+                    showError(fullName, "Full Name must be at least 3 characters.");
+                    valid = false;
+                } else {
+                    clearError(fullName);
+                }
+        
+                if (!validateEmail(email.value.trim())) {
+                    showError(email, "Enter a valid email.");
+                    valid = false;
+                } else {
+                    clearError(email);
+                }
+        
+                if (password.value.trim().length < 6) {
+                    showError(password, "Password must be at least 6 characters.");
+                    valid = false;
+                } else {
+                    clearError(password);
+                }
+        
+                if (password.value.trim() !== confirmPassword.value.trim()) {
+                    showError(confirmPassword, "Passwords do not match.");
+                    valid = false;
+                } else {
+                    clearError(confirmPassword);
+                }
+        
+                if (valid) {
+                    alert("Sign Up successful!");
+                    signUpForm.reset();
+                }
+            });
+        });
+        </script>
+        <!-- End of js SignUp | SignIn js form validation-->
 <!-- End of SignUp | SignIn form -->
 
 <!-- Footer section -->
@@ -493,291 +794,21 @@
 </footer>
 
 
-<!--search matches  keyword-->
-<script>
-    document.querySelector(".search-form").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent form submission
-    
-        let searchInput = document.getElementById("search-input").value.toLowerCase().trim();
-    
-        // Select all service elements
-        let serviceCards = document.querySelectorAll(".service-card");
-        let found = false;
-    
-        serviceCards.forEach(service => {
-            let serviceTitle = service.querySelector("h4").innerText.toLowerCase();
-    
-            // If the search term matches a service title, scroll to it
-            if (serviceTitle.includes(searchInput)) {
-                service.scrollIntoView({ behavior: "smooth", block: "start" });
-                found = true;
-            }
-        });
-    
-        // If no matching service is found, show an alert
-        if (!found) {
-            alert("No matching service found!");
-        }
-    });
-    </script>
-    
-<!--search bar-->
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("search-input");
-    const autocompleteList = document.getElementById("autocomplete-list");
-
-    const courses = [
-        "Frontend Development", " Backend Development", "Full Stack Development",
-        "Graphic Design", "Motion Graphics", "UI/UX Design","Data Science","Machine Learning", 
-        "AI Development", "Ethical Hacking","Network Security", "Cyber Threat Intelligence", 
-    ];
-
-    searchInput.addEventListener("input", function () {
-        let query = this.value.toLowerCase();
-        autocompleteList.innerHTML = "";
-
-        if (!query) {
-            autocompleteList.style.display = "none"; // Hide list when input is empty
-            return;
-        }
-
-        let suggestions = courses.filter(course => course.toLowerCase().includes(query));
-
-        if (suggestions.length === 0) {
-            autocompleteList.style.display = "none"; // Hide list if no matches
-            return;
-        }
-
-        suggestions.forEach(course => {
-            let item = document.createElement("div");
-            item.classList.add("autocomplete-item");
-            item.innerHTML = course;
-            item.addEventListener("click", function () {
-                searchInput.value = course;
-                autocompleteList.innerHTML = "";
-                autocompleteList.style.display = "none";
-            });
-            autocompleteList.appendChild(item);
-        });
-
-        autocompleteList.style.display = "block"; // Show list when there are matches
-    });
-
-    // Hide suggestions when clicking outside
-    document.addEventListener("click", function (event) {
-        if (!searchInput.contains(event.target) && !autocompleteList.contains(event.target)) {
-            autocompleteList.style.display = "none";
-        }
-    });
-});
-
-</script>
-
-       <!-- JavaScript for Filtering and Load More -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const serviceCards = document.querySelectorAll(".service-card");
-    const loadMoreBtn = document.getElementById("loadMore");
-    let allServicesLoaded = false;
-    const itemsToShow = 3; // Number of items to show initially on mobile
-
-    function updateServiceVisibility(category) {
-        let visibleCount = 0;
-
-        serviceCards.forEach(card => {
-            if (category === "all" || card.getAttribute("data-category") === category) {
-                if (visibleCount < itemsToShow) {
-                    card.classList.remove("hidden");
-                } else {
-                    card.classList.add("hidden");
-                }
-                visibleCount++;
-            } else {
-                card.classList.add("hidden");
-            }
-        });
-
-        loadMoreBtn.style.display = (visibleCount > itemsToShow && window.innerWidth < 768) ? "block" : "none";
-    }
-
-    // Handle category filter clicks
-    filterButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const category = this.getAttribute("data-category");
-            filterButtons.forEach(btn => btn.classList.remove("active"));
-            this.classList.add("active");
-
-            allServicesLoaded = false; // Reset flag
-            updateServiceVisibility(category);
-        });
-    });
-
-    // Load more services when button is clicked
-    loadMoreBtn.addEventListener("click", function () {
-        allServicesLoaded = true;
-        document.querySelectorAll(".service-card.hidden").forEach(card => card.classList.remove("hidden"));
-        loadMoreBtn.style.display = "none";
-    });
-
-    // Initialize visibility for mobile
-    if (window.innerWidth < 768) {
-        updateServiceVisibility("all");
-    }
-});
-
-</script>
-<!-- End of js service section -->
-
-       <!-- js Contact form validation -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevents page reload
-
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const message = document.getElementById("message").value.trim();
-
-            if (name === "" || email === "" || message === "") {
-                alert("Please fill in all fields before submitting.");
-            } else {
-                alert("Message sent successfully!");
-                form.reset(); // Clears the form
-            }
-        });
-    });
-</script>
-<!-- End of js Contact form validation -->
-
-       <!-- js SignUP | SignIn form validation -->
-      <!-- JavaScript -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const signInForm = document.getElementById("signInForm");
-        const signUpForm = document.getElementById("signUpForm");
-        const formTitle = document.getElementById("formTitle");
-        const showSignInBtn = document.getElementById("showSignIn");
-        const showSignUpBtn = document.getElementById("showSignUp");
     
-        // Toggle between Sign In and Sign Up
-        showSignInBtn.addEventListener("click", function () {
-            signInForm.classList.remove("d-none");
-            signUpForm.classList.add("d-none");
-            formTitle.textContent = "Sign In";
-            showSignInBtn.classList.add("btn-primary");
-            showSignUpBtn.classList.remove("btn-primary");
-            showSignUpBtn.classList.add("btn-secondary");
-        });
-    
-        showSignUpBtn.addEventListener("click", function () {
-            signUpForm.classList.remove("d-none");
-            signInForm.classList.add("d-none");
-            formTitle.textContent = "Sign Up";
-            showSignUpBtn.classList.add("btn-primary");
-            showSignInBtn.classList.remove("btn-primary");
-            showSignInBtn.classList.add("btn-secondary");
-        });
-    
-        // Function to show errors
-        function showError(input, message) {
-            const errorSpan = input.nextElementSibling;
-            errorSpan.textContent = message;
-            input.classList.add("is-invalid");
-        }
-    
-        // Function to clear errors
-        function clearError(input) {
-            const errorSpan = input.nextElementSibling;
-            errorSpan.textContent = "";
-            input.classList.remove("is-invalid");
-        }
-    
-        // Email validation function
-        function validateEmail(email) {
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailPattern.test(email);
-        }
-    
-        // Sign In Form Validation
-        signInForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-    
-            const email = document.getElementById("signInEmail");
-            const password = document.getElementById("signInPassword");
-            let valid = true;
-    
-            if (!validateEmail(email.value.trim())) {
-                showError(email, "Enter a valid email.");
-                valid = false;
-            } else {
-                clearError(email);
-            }
-    
-            if (password.value.trim().length < 6) {
-                showError(password, "Password must be at least 6 characters.");
-                valid = false;
-            } else {
-                clearError(password);
-            }
-    
-            if (valid) {
-                alert("Sign In successful!");
-                signInForm.reset();
-            }
-        });
-    
-        // Sign Up Form Validation
-        signUpForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-    
-            const fullName = document.getElementById("signUpName");
-            const email = document.getElementById("signUpEmail");
-            const password = document.getElementById("signUpPassword");
-            const confirmPassword = document.getElementById("confirmPassword");
-            let valid = true;
-    
-            if (fullName.value.trim().length < 3) {
-                showError(fullName, "Full Name must be at least 3 characters.");
-                valid = false;
-            } else {
-                clearError(fullName);
-            }
-    
-            if (!validateEmail(email.value.trim())) {
-                showError(email, "Enter a valid email.");
-                valid = false;
-            } else {
-                clearError(email);
-            }
-    
-            if (password.value.trim().length < 6) {
-                showError(password, "Password must be at least 6 characters.");
-                valid = false;
-            } else {
-                clearError(password);
-            }
-    
-            if (password.value.trim() !== confirmPassword.value.trim()) {
-                showError(confirmPassword, "Passwords do not match.");
-                valid = false;
-            } else {
-                clearError(confirmPassword);
-            }
-    
-            if (valid) {
-                alert("Sign Up successful!");
-                signUpForm.reset();
-            }
-        });
-    });
-    </script>
-    <!-- End of js SignUp | SignIn js form validation-->
-    
+
+
+<!-- Pop up for signup 
+    <script>
+function showSignupAlert(event) {
+    event.preventDefault(); // Prevents default navigation
+    window.location.href = "#signup"; // Scroll to signup section
+
+    setTimeout(() => {
+        alert("If you don't have an account, please sign up before proceeding.");
+    }, 500); // Show alert after scrolling
+}
+</script>-->
 
         <!-- Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
