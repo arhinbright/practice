@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Tech</title>
+    <!-- font style-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS 
+    <link rel="stylesheet" href="styles.css">-->
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* General Navbar Styling */
+.navbar {
+    background-color: #0a0a23;
+    padding: 12px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+/* Navbar Scroll Effect */
+.navbar.scrolled {
+    background-color: rgba(10, 10, 35, 0.9);
+}
+
+/* Logo Styling */
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}
+
+.navbar-brand:focus {
+    color:#fff;
+}
+
+.navbar-brand .logo-style {
+    color: #007bff;
+}
+
+
+
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    color: #fff;
+    font-size: 17px;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8b400;
+}
+
+/* Ensure only the toggle lines are white */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+
+/* Search Bar */
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.search-input {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    padding-right: 45px; /* Space for the search button */
+    font-size: 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+}
+
+.search-btn:hover {
+    color: #007bff;
+}
+
+/* Autocomplete Suggestions */
+.autocomplete-items {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 8px 0;
+    display: none; /* Hidden by default */
+}
+
+.autocomplete-item {
+    padding: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.3s ease-in-out;
+}
+
+.autocomplete-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Centering Navbar Links and Search Bar on Mobile */
+@media (max-width: 991px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-link {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .search-form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .search-container {
+        max-width: 100%;
+        width: 80%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+}
+
+
+/* hero section styling */
+/* Hero Section - Background Image */
+.hero-section {
+    background: url('images/laptop.jpg') no-repeat center center/cover;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+/* Add a dark overlay for better text visibility */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+/* Ensure text appears above the overlay */
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive text sizing */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+/* Button Styling */
+.btn-primary {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+    border-radius: 30px;
+}
+/* End of Hero-section styling */
+
+/* Section Titles */
+.section-title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #007bff;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+
+        /* Custom Services Section */
+        .custom-services {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('your-background-image.jpg') center/cover no-repeat;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.custom-services-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.custom-services-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.custom-services-text {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.custom-services .btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-services .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .custom-services-box {
+        padding: 30px;
+    }
+
+    .custom-services-title {
+        font-size: 2rem;
+    }
+
+    .custom-services-text {
+        font-size: 1rem;
+    }
+
+    .custom-services .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+
+/* Footer CSS */
+.footer-section {
+    background-color: #222;
+    color: white;
+    padding: 30px 0;
+    font-size: 14px;
+}
+.footer-logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+.footer-section h5 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.footer-section p, .footer-section a {
+    color: #ddd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-section a:hover {
+    color: #f8d210;
+}
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links li {
+    margin-bottom: 6px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.social-icons a {
+    font-size: 18px;
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.social-icons a:hover {
+    color: #f8d210;
+    transform: scale(1.15);
+}
+
+/* Copyright */
+.copyright-text {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-section .row {
+        text-align: center;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .footer-section {
+        padding: 20px 0;
+    }
+}
+</style>
+<body>
+<!-- navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="home.html">Future<span class="logo-style">Tech</span></a>
+        <div class="d-flex align-items-center d-lg-none">
+            <a href="#profile" class="profile-icon me-3"><i class="fas fa-user"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="d-flex search-form mx-lg-auto" autocomplete="off">
+                <div class="search-container">
+                    <input id="search-input" class="form-control search-input" type="search" placeholder="Search courses..." aria-label="Search">
+                    <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+                    <div id="autocomplete-list" class="autocomplete-items"></div>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-lg-4">
+                 <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li> 
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="signup.html">SignUp</a></li>
+                <li class="nav-item d-none d-lg-block"><a href="#profile" class="profile-icon"><i class="fas fa-user"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("search-input");
+        const autocompleteList = document.getElementById("autocomplete-list");
+    
+        const courses = [
+            "Frontend Development", " Backend Development", "Full Stack Development",
+            "Graphic Design", "Motion Graphics", "UI/UX Design","Data Science","Machine Learning", 
+            "AI Development", "Ethical Hacking","Network Security", "Cyber Threat Intelligence", 
+        ];
+    
+        searchInput.addEventListener("input", function () {
+            let query = this.value.toLowerCase();
+            autocompleteList.innerHTML = "";
+    
+            if (!query) {
+                autocompleteList.style.display = "none"; // Hide list when input is empty
+                return;
+            }
+    
+            let suggestions = courses.filter(course => course.toLowerCase().includes(query));
+    
+            if (suggestions.length === 0) {
+                autocompleteList.style.display = "none"; // Hide list if no matches
+                return;
+            }
+    
+            suggestions.forEach(course => {
+                let item = document.createElement("div");
+                item.classList.add("autocomplete-item");
+                item.innerHTML = course;
+                item.addEventListener("click", function () {
+                    searchInput.value = course;
+                    autocompleteList.innerHTML = "";
+                    autocompleteList.style.display = "none";
+                });
+                autocompleteList.appendChild(item);
+            });
+    
+            autocompleteList.style.display = "block"; // Show list when there are matches
+        });
+    
+        // Hide suggestions when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!searchInput.contains(event.target) && !autocompleteList.contains(event.target)) {
+                autocompleteList.style.display = "none";
+            }
+        });
+    });
+    
+    </script>
+    <!-- end of js for user inputs-->
+
+<!--search matches  keyword-->
+<script>
+    document.querySelector(".search-form").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent form submission
+    
+        let searchInput = document.getElementById("search-input").value.toLowerCase().trim();
+    
+        // Select all service elements
+        let serviceCards = document.querySelectorAll(".service-card");
+        let found = false;
+    
+        serviceCards.forEach(service => {
+            let serviceTitle = service.querySelector("h4").innerText.toLowerCase();
+    
+            // If the search term matches a service title, scroll to it
+            if (serviceTitle.includes(searchInput)) {
+                service.scrollIntoView({ behavior: "smooth", block: "start" });
+                found = true;
+            }
+        });
+    
+        // If no matching service is found, show an alert
+        if (!found) {
+            alert("No matching service found!");
+        }
+    });
+    </script>
+    <!-- End of search matches keyword -->
+<!-- Navbar End -->
+
+
+
+<!-- hero-section -->
+
+ <!-- Hero Section -->
+ <section class="hero-section d-flex align-items-center text-center text-light" id="home">
+     <div class="container">
+         <div class="row justify-content-center">
+             <div class="col-md-10 col-lg-8">
+                 <h4>Welcome to</h4>
+                 <h2>Future<span class="logo-style">Tech</span></h2>
+                 <p class="lead my-4">
+                     Master the skills of tomorrow with our expert-led
+                     programming courses. Build, innovate, and launch 
+                     your tech career today!
+                 </p>
+                 <a href="signup.html" class="btn btn-primary btn-lg" onclick="showSignupAlert()">Enroll Now</a>
+             </div>
+         </div>
+     </div>
+ </section>
+
+ 
+ <script>
+     // Function for alert on Enroll Now button
+     function showSignupAlert() {
+         alert("Sign up now to start your learning journey!");
+     }
+ </script>
+
+<section class="why-choose-us py-5 bg-light text-dark">
+    <div class="container text-center">
+        <h2 class="section-title mb-4">Why <span class="highlight">Choose Us?</span></h2>
+        <p class="lead mb-5">We provide expert-led courses, hands-on training, and personalized mentorship to ensure your success.</p>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 rounded shadow-lg bg-secondary text-white">
+                    <i class="fas fa-user-tie fa-3x mb-3"></i>
+                    <h4>Expert Instructors</h4>
+                    <p>Learn from industry professionals with years of experience.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 rounded shadow-lg bg-secondary text-white">
+                    <i class="fas fa-laptop-code fa-3x mb-3"></i>
+                    <h4>Hands-On Learning</h4>
+                    <p>Practical projects and real-world applications to boost your skills.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card p-4 rounded shadow-lg bg-secondary text-white">
+                    <i class="fas fa-comments fa-3x mb-3"></i>
+                    <h4>Personalized Mentorship</h4>
+                    <p>Get one-on-one guidance tailored to your career goals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="section-title">What Our Students Say</h2>
+        <p class="lead text-muted">Hear from our successful learners and professionals</p>
+
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Testimonial 1 -->
+                <div class="carousel-item active">
+                    <div class="testimonial-card mx-auto">
+                        <img src="student1.jpg" alt="Jane Doe" class="testimonial-img">
+                        <p class="testimonial-text">"The best learning experience ever! The mentors are amazing and truly care about student success."</p>
+                        <h5>Jane Doe</h5>
+                        <p class="text-muted">Web Developer</p>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="carousel-item">
+                    <div class="testimonial-card mx-auto">
+                        <img src="student2.jpg" alt="John Smith" class="testimonial-img">
+                        <p class="testimonial-text">"Helped me land my first tech job in just 3 months! The practical training is top-notch."</p>
+                        <h5>John Smith</h5>
+                        <p class="text-muted">Software Engineer</p>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="carousel-item">
+                    <div class="testimonial-card mx-auto">
+                        <img src="student3.jpg" alt="Emily Clark" class="testimonial-img">
+                        <p class="testimonial-text">"A game-changer! I learned UI/UX and now work at a top design agency."</p>
+                        <h5>Emily Clark</h5>
+                        <p class="text-muted">UI/UX Designer</p>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls 
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>-->
+        </div>
+    </div>
+</section>
+
+<!-- Contact for Custom Services -->
+<section class="custom-services">
+    <div class="custom-services-box">
+        <h2 class="custom-services-title">Need Custom Tech Solutions?</h2>
+        <p class="custom-services-text">
+            We provide tailored solutions for individuals and businesses. Let's build something amazing together!
+        </p>
+        <a href="#contact" class="btn btn-primary btn-lg">Get a Free Consultation</a>
+    </div>
+</section>
+
+
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row text-center text-md-start">
+            <!-- Logo & About -->
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <h4>FutureTech</h4>
+                <p>Your trusted partner for digital solutions.</p>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="col-12 col-md-4 mb-4 mb-md-0 text-center">
+                <h5>Follow Us</h5>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-12 col-md-4 text-center text-md-start">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center mt-3">
+            <p class="mb-0">&copy; 2025 FutureTech. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+        <!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous">
+</script>
+</body>
+</html>
