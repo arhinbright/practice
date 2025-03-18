@@ -147,73 +147,30 @@
 }
  /* End of Contact Styling */
 
- /* Footer CSS */
-.footer-section {
-    background-color: #222;
-    color: white;
-    padding: 30px 0;
-    font-size: 14px;
-}
-.footer-logo {
-    font-size: 22px;
-    font-weight: bold;
-}
-.footer-section h5 {
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-.footer-section p, .footer-section a {
-    color: #ddd;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-.footer-section a:hover {
-    color: #f8d210;
-}
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.footer-links li {
-    margin-bottom: 6px;
-}
-
-/* Social Icons */
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-.social-icons a {
-    font-size: 18px;
-    color: white;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-.social-icons a:hover {
-    color: #f8d210;
-    transform: scale(1.15);
-}
-
-/* Copyright */
-.copyright-text {
-    margin-top: 10px;
-    font-size: 12px;
-    opacity: 0.8;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .footer-section .row {
-        text-align: center;
+ /* footer icons styling */
+        /* Social Media Icons */
+        .social-icons a {
+        font-size: 20px;
+        color: white;
+        transition: color 0.3s ease, transform 0.3s ease;
     }
-    .social-icons {
-        justify-content: center;
+
+    .social-icons a:hover {
+        color: #f8d210;
+        transform: scale(1.2);
     }
-    .footer-section {
-        padding: 20px 0;
+
+    /* Quick Links */
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease, text-decoration 0.3s ease;
     }
-}
+
+    .footer-links a:hover {
+        color: #f8d210;
+        text-decoration: none;
+    }
     </style>
 </head>
 <body>
@@ -325,32 +282,32 @@
 
 <!-- End of contact section -->
 
-<!-- Footer section -->
-<footer class="footer-section">
+<!-- Footer Section -->
+<footer class="bg-dark text-light py-4">
     <div class="container">
-        <div class="row text-center text-md-start">
+        <div class="row align-items-center">
             <!-- Logo & About -->
-            <div class="col-12 col-md-4 mb-4 mb-md-0">
-                <h4>FutureTech</h4>
-                <p>Your trusted partner for digital solutions.</p>
+            <div class="col-12 col-md-4 text-center text-md-start mb-3 mb-md-0">
+                <h4 class="fw-bold">FutureTech</h4>
+                <p class="small mb-0">Your trusted partner for digital solutions.</p>
             </div>
 
             <!-- Social Media Icons -->
-            <div class="col-12 col-md-4 mb-4 mb-md-0 text-center">
-                <h5>Follow Us</h5>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+            <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+                <h5 class="fw-semibold">Follow Us</h5>
+                <div class="d-flex justify-content-center gap-2 social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
             <!-- Quick Links -->
-            <div class="col-12 col-md-4 text-center text-md-start">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
+            <div class="col-12 col-md-4 text-center text-md-end">
+                <h5 class="fw-semibold">Quick Links</h5>
+                <ul class="list-unstyled mb-0 footer-links">
                     <li><a href="home.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
@@ -360,7 +317,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="text-center mt-3">
+        <div class="text-center mt-3 small opacity-75">
             <p class="mb-0">&copy; 2025 FutureTech. All Rights Reserved.</p>
         </div>
     </div>

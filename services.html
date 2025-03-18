@@ -26,6 +26,7 @@
     padding: 12px 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
+    position: absolute;
 }
 
 /* Navbar Scroll Effect */
@@ -347,110 +348,30 @@
 
 /* End of Services styling */
 
-/* Footer CSS */
-.footer-section {
-    background-color: #222;
-    color: white;
-    padding: 20px 0;
-    font-size: 14px;
-}
-
-/* Footer Logo */
-.footer-logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Footer Text */
-.footer-text {
-    color: #ddd;
-    font-size: 13px;
-    margin-bottom: 0;
-}
-
-/* Headings */
-.footer-section h5 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-/* Links */
-.footer-section a {
-    color: #ddd;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-    color: #f8d210;
-}
-
-/* Footer Links */
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-links li {
-    margin-bottom: 5px;
-}
-
-/* Social Icons */
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.social-icons a {
-    font-size: 16px;
-    color: white;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #f8d210;
-    transform: scale(1.1);
-}
-
-/* Copyright */
-.copyright-text {
-    font-size: 12px;
-    opacity: 0.7;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .footer-section {
-        padding: 15px 0;
+/* footer icons styling */
+        /* Social Media Icons */
+        .social-icons a {
+        font-size: 20px;
+        color: white;
+        transition: color 0.3s ease, transform 0.3s ease;
     }
 
-    .footer-section .row {
-        text-align: center;
+    .social-icons a:hover {
+        color: #f8d210;
+        transform: scale(1.2);
     }
 
-    .social-icons {
-        justify-content: center;
+    /* Quick Links */
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease, text-decoration 0.3s ease;
     }
 
-    .footer-text {
-        font-size: 12px;
+    .footer-links a:hover {
+        color: #f8d210;
+        text-decoration: none;
     }
-
-    .footer-links {
-        padding-top: 5px;
-    }
-
-    .footer-section h5 {
-        font-size: 14px;
-    }
-
-    .social-icons a {
-        font-size: 14px;
-    }
-}
 
     </style>
 </head>
@@ -489,15 +410,6 @@
 </nav>
 
 
-
-<!-- JavaScript for Pop-Up 
-<script>
-    document.getElementById("signup-link").addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent default navigation
-        alert("If you already have an account, just log in.");
-        window.location.href = "#signup"; // Redirect to signup after the alert
-    });
-</script>-->
 <!-- inputs of a user -->
 <script>
 
@@ -576,7 +488,7 @@
     
         // If no matching service is found, show an alert
         if (!found) {
-            alert("No matching service found!");
+            alert("No matching service found!. Please check your spelling or search for another");
         }
     });
     </script>
@@ -759,33 +671,32 @@
 <!-- End of Services -->
 
 
-<!-- Footer section -->
 <!-- Footer Section -->
-<footer class="footer-section">
+<footer class="bg-dark text-light py-4">
     <div class="container">
         <div class="row align-items-center">
             <!-- Logo & About -->
             <div class="col-12 col-md-4 text-center text-md-start mb-3 mb-md-0">
-                <h4 class="footer-logo">FutureTech</h4>
-                <p class="footer-text">Your trusted partner for digital solutions.</p>
+                <h4 class="fw-bold">FutureTech</h4>
+                <p class="small mb-0">Your trusted partner for digital solutions.</p>
             </div>
 
             <!-- Social Media Icons -->
             <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
-                <h5>Follow Us</h5>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                <h5 class="fw-semibold">Follow Us</h5>
+                <div class="d-flex justify-content-center gap-2 social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
 
             <!-- Quick Links -->
             <div class="col-12 col-md-4 text-center text-md-end">
-                <h5>Quick Links</h5>
-                <ul class="footer-links">
+                <h5 class="fw-semibold">Quick Links</h5>
+                <ul class="list-unstyled mb-0 footer-links">
                     <li><a href="home.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
@@ -795,7 +706,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="text-center mt-3 copyright-text">
+        <div class="text-center mt-3 small opacity-75">
             <p class="mb-0">&copy; 2025 FutureTech. All Rights Reserved.</p>
         </div>
     </div>
