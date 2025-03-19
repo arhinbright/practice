@@ -618,10 +618,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- End of Course Overview -->
 
 
-<!-- Graphic Design Course Progress Tracker -->
+<!-- Ethical Hacking Course Progress Tracker -->
 <div class="container my-4">
     <div class="progress-container card p-4 shadow-lg rounded">
-        <h3 class="text-center mb-3">🎨 Graphic Design Course Progress Tracker</h3>
+        <h3 class="text-center mb-3">🛡️ Ethical Hacking Course Progress Tracker</h3>
 
         <!-- Progress Bar -->
         <div class="progress mb-3" style="height: 25px;">
@@ -631,24 +631,36 @@ document.addEventListener("DOMContentLoaded", function () {
         <!-- Lesson List -->
         <div id="lessonList" class="list-group">
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">Design Fundamentals</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1">
+                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">Introduction to Ethical Hacking</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">Digital Tools & Software</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2">
+                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">Footprinting & Reconnaissance</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Branding & Identity Design</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3">
+                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Scanning Networks</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">Print & Digital Media</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4">
+                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">System Hacking Techniques</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="7" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=7" class="text-decoration-none">Motion Graphics with After Effects</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="5">
+                <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">Web Application Hacking</a></label>
+            </div>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="6">
+                <label class="mb-0"><a href="lesson.html?lesson=6" class="text-decoration-none">Wireless Network Security</a></label>
+            </div>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="7">
+                <label class="mb-0"><a href="lesson.html?lesson=7" class="text-decoration-none">Malware Analysis & Exploitation</a></label>
+            </div>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="8">
+                <label class="mb-0"><a href="lesson.html?lesson=8" class="text-decoration-none">Penetration Testing & Reporting</a></label>
             </div>
         </div>
 
@@ -660,56 +672,30 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const checkboxes = document.querySelectorAll(".lesson-checkbox");
-        const progressBar = document.getElementById("progressBar");
-        const resetButton = document.getElementById("resetProgress");
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".lesson-checkbox");
+    const progressBar = document.getElementById("progressBar");
+    const resetButton = document.getElementById("resetProgress");
 
-        function loadProgress() {
-            let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
-            checkboxes.forEach(checkbox => {
-                if (completedLessons.includes(checkbox.dataset.lesson)) {
-                    checkbox.checked = true;
-                    checkbox.closest(".lesson-item").classList.add("list-group-item-success");
-                }
-            });
-            updateProgress();
-        }
+    function updateProgress() {
+        let checkedCount = document.querySelectorAll(".lesson-checkbox:checked").length;
+        let totalLessons = checkboxes.length;
+        let progress = (checkedCount / totalLessons) * 100;
+        progressBar.style.width = progress + "%";
+        progressBar.textContent = Math.round(progress) + "%";
+    }
 
-        function updateProgress() {
-            let totalLessons = checkboxes.length;
-            let completedLessons = document.querySelectorAll(".lesson-checkbox:checked").length;
-            let percentage = (completedLessons / totalLessons) * 100;
-            progressBar.style.width = percentage + "%";
-            progressBar.innerText = Math.round(percentage) + "%";
-        }
-
-        function markLessonCompleted() {
-            let urlParams = new URLSearchParams(window.location.search);
-            let lessonNumber = urlParams.get("lesson");
-
-            if (lessonNumber) {
-                let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
-                if (!completedLessons.includes(lessonNumber)) {
-                    completedLessons.push(lessonNumber);
-                    localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
-                }
-            }
-        }
-
-        resetButton.addEventListener("click", function () {
-            localStorage.removeItem("completedLessons");
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-                checkbox.closest(".lesson-item").classList.remove("list-group-item-success");
-            });
-            updateProgress();
-        });
-
-        markLessonCompleted();
-        loadProgress();
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", updateProgress);
     });
+
+    resetButton.addEventListener("click", function() {
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+        updateProgress();
+    });
+});
 </script>
+
 
 
 <!-- End of Progress Tracker -->
