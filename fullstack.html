@@ -323,6 +323,7 @@
             text-decoration: line-through;
             color: #6c757d;
         }
+        
 
         /* footer icons styling */
         /* Social Media Icons */
@@ -368,7 +369,7 @@
             <form class="d-flex search-form mx-lg-auto" autocomplete="off">
                 <div class="search-container">
                     <input id="search-input" class="form-control search-input" type="search" placeholder="Search courses..." aria-label="Search">
-                    <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
                     <div id="autocomplete-list" class="autocomplete-items"></div>
                 </div>
             </form>
@@ -386,30 +387,23 @@
     </div>
 </nav>
 
-
-<!-- inputs of a user -->
+<!-- JavaScript Fix -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const searchForm = document.querySelector(".search-form");
     const searchInput = document.getElementById("search-input");
     const autocompleteList = document.getElementById("autocomplete-list");
-    const courseLinks = document.querySelectorAll(".accordion-body ul li a");
+    const courseSections = document.querySelectorAll(".accordion-button");
 
     const courses = [
-        "Backend Fundamentals", "Node.js", "Python", "Java", "Django/FastAPI", "Express.js",
-        "Database Management", "Authentication & Security", "API Development & Integration",
-        "SQL & NoSQL", "Spring Boot", "JWT, OAuth, Sessions", "REST & GraphQL",
-        "HTML, CSS & JavaScript Basics", "React.js Basics", "Responsive Web Design (Bootstrap, Tailwind CSS)", 
-        "Advanced Frontend Development"
+        "Frontend Development", " Backend Development", 
     ];
 
     // Prevent form submission
     searchForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        handleSearch();
     });
 
-    // Handle input for autocomplete
     searchInput.addEventListener("input", function () {
         let query = searchInput.value.trim().toLowerCase();
         autocompleteList.innerHTML = "";
@@ -442,14 +436,12 @@
         autocompleteList.style.display = "block";
     });
 
-    // Hide autocomplete when clicking outside
     document.addEventListener("click", function (event) {
         if (!searchInput.contains(event.target) && !autocompleteList.contains(event.target)) {
             autocompleteList.style.display = "none";
         }
     });
 
-    // Listen for Enter key press
     searchInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -457,14 +449,10 @@
         }
     });
 
-    // Function to handle searching
     function handleSearch() {
-        let query = searchInput.value.trim().toLowerCase();
-
+        let query = searchInput.value.trim();
         if (query === "") return;
-
-        let matchedCourse = courses.find(course => course.toLowerCase() === query);
-
+        let matchedCourse = courses.find(course => course.toLowerCase() === query.toLowerCase());
         if (matchedCourse) {
             scrollToCourse(matchedCourse);
         } else {
@@ -472,37 +460,23 @@
         }
     }
 
-    // Function to scroll to the matching course section
     function scrollToCourse(courseName) {
         let found = false;
-
-        courseLinks.forEach(link => {
-            let courseText = link.innerText.trim().toLowerCase();
-            if (courseText.includes(courseName.toLowerCase())) {
-                link.scrollIntoView({ behavior: "smooth", block: "start" });
-
-                // Open the parent accordion section
-                let parentAccordion = link.closest(".accordion-collapse");
-                if (parentAccordion && !parentAccordion.classList.contains("show")) {
-                    let accordionButton = parentAccordion.previousElementSibling.querySelector(".accordion-button");
-                    if (accordionButton) {
-                        accordionButton.click();
-                    }
-                }
-
+        courseSections.forEach(section => {
+            if (section.innerText.toLowerCase().includes(courseName.toLowerCase())) {
+                section.scrollIntoView({ behavior: "smooth", block: "start" });
+                section.click();
                 found = true;
             }
         });
-
         if (!found) {
-            alert("Course not found. Please check your spelling or try another search.");
+            alert("Course not found. Please check your spelling or search for another course.");
         }
     }
 });
-
-
-
 </script>
+
+
     <!-- End of search matches keyword -->
 <!-- Navbar End -->
 
@@ -628,54 +602,54 @@
             <h4>🎨 Frontend Development:</h4>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="1" disabled>
-                <label><a href="lesson.html?lesson=1">🔤 HTML, CSS & JavaScript Basics</a></label>
+                <label><a href="lesson.html?lesson=1"> HTML, CSS & JavaScript Basics</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="2" disabled>
-                <label><a href="lesson.html?lesson=2">⚡ React.js Basics</a></label>
+                <label><a href="lesson.html?lesson=2"> React.js Basics</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="3" disabled>
-                <label><a href="lesson.html?lesson=3">📱 Responsive Web Design (Bootstrap, Tailwind CSS)</a></label>
+                <label><a href="lesson.html?lesson=3"> Responsive Web Design (Bootstrap, Tailwind CSS)</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="4" disabled>
-                <label><a href="lesson.html?lesson=4">🖥️ Advanced Frontend Development</a></label>
+                <label><a href="lesson.html?lesson=4"> Advanced Frontend Development</a></label>
             </div>
             
             <!-- Backend Development -->
             <h4>🖥️ Backend Development:</h4>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="5" disabled>
-                <label><a href="lesson.html?lesson=5">🛠️ Backend Fundamentals (Introduction to Server-Side Development)</a></label>
+                <label><a href="lesson.html?lesson=5"> Backend Fundamentals (Introduction to Server-Side Development)</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="6" disabled>
-                <label><a href="lesson.html?lesson=6">📜 Node.js (Express.js) Basics</a></label>
+                <label><a href="lesson.html?lesson=6"> Node.js (Express.js) Basics</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="7" disabled>
-                <label><a href="lesson.html?lesson=7">🐍 Python (Django/FastAPI) Basics</a></label>
+                <label><a href="lesson.html?lesson=7"> Python (Django/FastAPI) Basics</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="8" disabled>
-                <label><a href="lesson.html?lesson=8">☕ Java (Spring Boot) Basics</a></label>
+                <label><a href="lesson.html?lesson=8"> Java (Spring Boot) Basics</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="9" disabled>
-                <label><a href="lesson.html?lesson=9">🗄️ Database Management (SQL & NoSQL)</a></label>
+                <label><a href="lesson.html?lesson=9"> Database Management (SQL & NoSQL)</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="10" disabled>
-                <label><a href="lesson.html?lesson=10">🔐 Authentication & Security (JWT, OAuth, Sessions)</a></label>
+                <label><a href="lesson.html?lesson=10"> Authentication & Security (JWT, OAuth, Sessions)</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="11" disabled>
-                <label><a href="lesson.html?lesson=11">⚡ API Development & Integration (REST & GraphQL)</a></label>
+                <label><a href="lesson.html?lesson=11"> API Development & Integration (REST & GraphQL)</a></label>
             </div>
             <div class="lesson-item">
                 <input type="checkbox" class="lesson-checkbox" data-lesson="12" disabled>
-                <label><a href="lesson.html?lesson=12">🚀 Advanced Backend Development (Scalability, Performance Optimization, Microservices)</a></label>
+                <label><a href="lesson.html?lesson=12"> Advanced Backend Development (Scalability, Performance Optimization, Microservices)</a></label>
             </div>
         </div>
 
