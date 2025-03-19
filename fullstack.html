@@ -389,19 +389,18 @@
 
 <!-- inputs of a user -->
 <script>
-
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
     const searchForm = document.querySelector(".search-form");
     const searchInput = document.getElementById("search-input");
     const autocompleteList = document.getElementById("autocomplete-list");
-    const courseSections = document.querySelectorAll(".accordion-button");
+    const courseLinks = document.querySelectorAll(".accordion-body ul li a");
 
     const courses = [
-        "Backend Fundamentals", "Node.js", "Python", "Java", "Django/FastAPI","Express.js",
+        "Backend Fundamentals", "Node.js", "Python", "Java", "Django/FastAPI", "Express.js",
         "Database Management", "Authentication & Security", "API Development & Integration",
-        "SQL & NoSQL", "Spring Boot", "JWT, OAuth, Sessions", "REST & GraphQl",
-        "HTML, CSS & JavaScript Basics", "React.js Basics", "Responsive Web Design (Bootstrap, Tailwind CSS)", " Advanced Frontend Development", 
-         "Advanced Frontend Development",
+        "SQL & NoSQL", "Spring Boot", "JWT, OAuth, Sessions", "REST & GraphQL",
+        "HTML, CSS & JavaScript Basics", "React.js Basics", "Responsive Web Design (Bootstrap, Tailwind CSS)", 
+        "Advanced Frontend Development"
     ];
 
     // Prevent form submission
@@ -453,18 +452,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Listen for Enter key press
     searchInput.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
-            event.preventDefault(); // Prevents form submission
+            event.preventDefault();
             handleSearch();
         }
     });
 
     // Function to handle searching
     function handleSearch() {
-        let query = searchInput.value.trim();
+        let query = searchInput.value.trim().toLowerCase();
 
         if (query === "") return;
 
-        let matchedCourse = courses.find(course => course.toLowerCase() === query.toLowerCase());
+        let matchedCourse = courses.find(course => course.toLowerCase() === query);
 
         if (matchedCourse) {
             scrollToCourse(matchedCourse);
@@ -477,23 +476,33 @@ document.addEventListener("DOMContentLoaded", function () {
     function scrollToCourse(courseName) {
         let found = false;
 
-        courseSections.forEach(section => {
-            if (section.innerText.toLowerCase().includes(courseName.toLowerCase())) {
-                section.scrollIntoView({ behavior: "smooth", block: "start" });
-                section.click();
+        courseLinks.forEach(link => {
+            let courseText = link.innerText.trim().toLowerCase();
+            if (courseText.includes(courseName.toLowerCase())) {
+                link.scrollIntoView({ behavior: "smooth", block: "start" });
+
+                // Open the parent accordion section
+                let parentAccordion = link.closest(".accordion-collapse");
+                if (parentAccordion && !parentAccordion.classList.contains("show")) {
+                    let accordionButton = parentAccordion.previousElementSibling.querySelector(".accordion-button");
+                    if (accordionButton) {
+                        accordionButton.click();
+                    }
+                }
+
                 found = true;
             }
         });
 
         if (!found) {
-            alert("Course not found, Please check your spelling or search for another course.");
+            alert("Course not found. Please check your spelling or try another search.");
         }
     }
 });
 
 
 
-    </script>
+</script>
     <!-- End of search matches keyword -->
 <!-- Navbar End -->
 
