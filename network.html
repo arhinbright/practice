@@ -357,7 +357,7 @@
     <!-- navbar.html -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="home.html">Future<span class="logo-style">Tech</span></a>
+        <a class="navbar-brand" href="index.html">Future<span class="logo-style">Tech</span></a>
         <div class="d-flex align-items-center d-lg-none">
             <a href="#profile" class="profile-icon me-3"><i class="fas fa-user"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -397,9 +397,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const courseSections = document.querySelectorAll(".accordion-button");
 
     const courses = [
-        "Backend Fundamentals", "Node.js", "Python", "Java", "Django/FastAPI","Express.js",
-        "Database Management", "Authentication & Security", "API Development & Integration",
-        "SQL & NoSQL", "Spring Boot", "JWT, OAuth, Sessions", "REST & GraphQl",
+        "Network Security Fundamentals", "Firewalls & Instrusion Detection", "Cryptography & Encryption",
+        "Ethical Hacking & Penetration Testing", "Network Security Protocols", "Incident Response & Forensics",
+        "Cloud & IoT Security",
     ];
 
     // Prevent form submission
@@ -703,37 +703,33 @@ document.addEventListener("DOMContentLoaded", function () {
         <div id="lessonList" class="list-group">
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1">
-                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">Introduction to Network Security</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">Network Security Fundamentals</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2">
-                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">Firewalls & Intrusion Detection Systems</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">Firewalls & Intrusion Detection</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3">
-                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Network Protocol Security</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Cryptography & Encryption</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4">
-                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">Wireless Network Security</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">Ethical Hacking & Penetration Testing</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="5">
-                <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">Encryption & Cryptography</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">Network Security Protocols</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="6">
-                <label class="mb-0"><a href="lesson.html?lesson=6" class="text-decoration-none">Virtual Private Networks (VPNs)</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=6" class="text-decoration-none">Incident Response & Forensics</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="7">
-                <label class="mb-0"><a href="lesson.html?lesson=7" class="text-decoration-none">Incident Response & Risk Management</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=7" class="text-decoration-none">Cloud & IoT Security</a></label>
             </div>
-            <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="8">
-                <label class="mb-0"><a href="lesson.html?lesson=8" class="text-decoration-none">Network Penetration Testing</a></label>
-            </div>
-        </div>
+            
 
         <!-- Reset Progress -->
         <div class="text-center mt-3">

@@ -318,7 +318,7 @@
    <!-- navbar.html -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="home.html">Future<span class="logo-style">Tech</span></a>
+        <a class="navbar-brand" href="index.html">Future<span class="logo-style">Tech</span></a>
         <div class="d-flex align-items-center d-lg-none">
             <a href="#profile" class="profile-icon me-3"><i class="fas fa-user"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -636,40 +636,39 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- UI/UX Course Progress Tracker -->
 <div class="container my-4">
     <div class="progress-container card p-4 shadow-lg rounded">
-        <h3 class="text-center mb-3">🎨 UI/UX Course Progress Tracker</h3>
+        <h3 class="text-center mb-3">UI / UX Design Course Progress Tracker</h3>
 
         <!-- Progress Bar -->
         <div class="progress mb-3" style="height: 25px;">
-            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 0%; font-weight: bold;">0%</div>
+            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 0%; font-weight: bold;">0%</div>
         </div>
 
         <!-- Lesson List -->
         <div id="lessonList" class="list-group">
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none"> UX Fundamentals</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1">
+                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">UX Fundamentals</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2" disabled>
-                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">UI Design Principles</a></label>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2">
+                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">UI Principles</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3" disabled>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3">
                 <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Wireframing & Prototyping</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4" disabled>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4">
                 <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">Interaction & Motion Design</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="5" disabled>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="5">
                 <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">Design Systems & Branding</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="6" disabled>
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="6">
                 <label class="mb-0"><a href="lesson.html?lesson=6" class="text-decoration-none">Advanced UI/UX Concepts</a></label>
             </div>
-        </div>
 
         <!-- Reset Progress -->
         <div class="text-center mt-3">
@@ -678,56 +677,31 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 </div>
 
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const checkboxes = document.querySelectorAll(".lesson-checkbox");
-        const progressBar = document.getElementById("progressBar");
-        const resetButton = document.getElementById("resetProgress");
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".lesson-checkbox");
+    const progressBar = document.getElementById("progressBar");
+    const resetButton = document.getElementById("resetProgress");
 
-        function loadProgress() {
-            let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
-            checkboxes.forEach(checkbox => {
-                if (completedLessons.includes(checkbox.dataset.lesson)) {
-                    checkbox.checked = true;
-                    checkbox.closest(".lesson-item").classList.add("list-group-item-success");
-                }
-            });
-            updateProgress();
-        }
+    function updateProgress() {
+        let checkedCount = document.querySelectorAll(".lesson-checkbox:checked").length;
+        let totalLessons = checkboxes.length;
+        let progress = (checkedCount / totalLessons) * 100;
+        progressBar.style.width = progress + "%";
+        progressBar.textContent = Math.round(progress) + "%";
+    }
 
-        function updateProgress() {
-            let totalLessons = checkboxes.length;
-            let completedLessons = document.querySelectorAll(".lesson-checkbox:checked").length;
-            let percentage = (completedLessons / totalLessons) * 100;
-            progressBar.style.width = percentage + "%";
-            progressBar.innerText = Math.round(percentage) + "%";
-        }
-
-        function markLessonCompleted() {
-            let urlParams = new URLSearchParams(window.location.search);
-            let lessonNumber = urlParams.get("lesson");
-
-            if (lessonNumber) {
-                let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
-                if (!completedLessons.includes(lessonNumber)) {
-                    completedLessons.push(lessonNumber);
-                    localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
-                }
-            }
-        }
-
-        resetButton.addEventListener("click", function () {
-            localStorage.removeItem("completedLessons");
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-                checkbox.closest(".lesson-item").classList.remove("list-group-item-success");
-            });
-            updateProgress();
-        });
-
-        markLessonCompleted();
-        loadProgress();
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", updateProgress);
     });
+
+    resetButton.addEventListener("click", function() {
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+        updateProgress();
+    });
+});
+
 </script>
 
 <!-- End of Progress Tracker -->

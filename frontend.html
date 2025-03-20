@@ -39,9 +39,6 @@
     text-decoration: none;
 }
 
-.navbar-brand:hover {
-    color: #fff;
-}
 
 .navbar-brand:focus {
     color:#fff;
@@ -633,106 +630,75 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- End of Course Overview -->
 
 
-<!-- Progress tracker -->
-<div class="container">
-    <div class="progress-container">
-        <h3 class="text-center mb-3">📊 Course Progress Tracker</h3>
+<!-- Frontend Development Progress tracker -->
+<div class="container my-4">
+    <div class="progress-container card p-4 shadow-lg rounded">
+        <h3 class="text-center mb-3">🌐 Frontend Development Course Progress Tracker</h3>
 
         <!-- Progress Bar -->
-        <div class="progress mb-3">
-            <div id="progressBar" class="progress-bar bg-success" style="width: 0%;">0%</div>
+        <div class="progress mb-3" style="height: 25px;">
+            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 0%; font-weight: bold;">0%</div>
         </div>
 
         <!-- Lesson List -->
-        <div id="lessonList">
-            <div class="lesson-item">
-                <input type="checkbox" class="lesson-checkbox" data-lesson="1" disabled>
-                <label><a href="lesson.html?lesson=1">Introduction to HTML</a></label>
+        <div id="lessonList" class="list-group">
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1">
+                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">HTML Basics</a></label>
             </div>
-            <div class="lesson-item">
-                <input type="checkbox" class="lesson-checkbox" data-lesson="2" disabled>
-                <label><a href="lesson.html?lesson=2">CSS Basics & Styling</a></label>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2">
+                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">CSS Basics</a></label>
             </div>
-            <div class="lesson-item">
-                <input type="checkbox" class="lesson-checkbox" data-lesson="3" disabled>
-                <label><a href="lesson.html?lesson=3">JavaScript Fundamentals</a></label>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3">
+                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Bootstrap</a></label>
             </div>
-            <div class="lesson-item">
-                <input type="checkbox" class="lesson-checkbox" data-lesson="4" disabled>
-                <label><a href="lesson.html?lesson=4">Building Responsive Websites</a></label>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4">
+                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">JavaScript Basics</a></label>
             </div>
-            <div class="lesson-item">
-                <input type="checkbox" class="lesson-checkbox" data-lesson="5" disabled>
-                <label><a href="lesson.html?lesson=5">JavaScript DOM Manipulation</a></label>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="5">
+                <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">Intermediate HTML, CSS, & JavaScript</a></label>
             </div>
-            <div class="lesson-item">
-                <input type="checkbox" class="lesson-checkbox" data-lesson="6" disabled>
-                <label><a href="lesson.html?lesson=6">React Basics & Components</a></label>
+            <div class="lesson-item list-group-item d-flex align-items-center">
+                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="6">
+                <label class="mb-0"><a href="lesson.html?lesson=6" class="text-decoration-none">Advanced Frontend Development</a></label>
             </div>
-        </div>
 
         <!-- Reset Progress -->
         <div class="text-center mt-3">
-            <button id="resetProgress" class="btn btn-danger">Reset Progress</button>
+            <button id="resetProgress" class="btn btn-danger shadow-sm">Reset Progress</button>
         </div>
     </div>
 </div>
 
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const checkboxes = document.querySelectorAll(".lesson-checkbox");
-        const progressBar = document.getElementById("progressBar");
-        const resetButton = document.getElementById("resetProgress");
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".lesson-checkbox");
+    const progressBar = document.getElementById("progressBar");
+    const resetButton = document.getElementById("resetProgress");
 
-        // Load progress from localStorage
-        function loadProgress() {
-            let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
-            checkboxes.forEach(checkbox => {
-                if (completedLessons.includes(checkbox.dataset.lesson)) {
-                    checkbox.checked = true;
-                    checkbox.nextElementSibling.classList.add("completed");
-                }
-            });
-            updateProgress();
-        }
+    function updateProgress() {
+        let checkedCount = document.querySelectorAll(".lesson-checkbox:checked").length;
+        let totalLessons = checkboxes.length;
+        let progress = (checkedCount / totalLessons) * 100;
+        progressBar.style.width = progress + "%";
+        progressBar.textContent = Math.round(progress) + "%";
+    }
 
-        // Update progress bar
-        function updateProgress() {
-            let totalLessons = checkboxes.length;
-            let completedLessons = document.querySelectorAll(".lesson-checkbox:checked").length;
-            let percentage = (completedLessons / totalLessons) * 100;
-            progressBar.style.width = percentage + "%";
-            progressBar.innerText = Math.round(percentage) + "%";
-        }
-
-        // Auto-mark lesson as completed if visited
-        function markLessonCompleted() {
-            let urlParams = new URLSearchParams(window.location.search);
-            let lessonNumber = urlParams.get("lesson");
-
-            if (lessonNumber) {
-                let completedLessons = JSON.parse(localStorage.getItem("completedLessons")) || [];
-                if (!completedLessons.includes(lessonNumber)) {
-                    completedLessons.push(lessonNumber);
-                    localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
-                }
-            }
-        }
-
-        // Reset progress
-        resetButton.addEventListener("click", function () {
-            localStorage.removeItem("completedLessons");
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-                checkbox.nextElementSibling.classList.remove("completed");
-            });
-            updateProgress();
-        });
-
-        // Run functions
-        markLessonCompleted();
-        loadProgress();
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", updateProgress);
     });
+
+    resetButton.addEventListener("click", function() {
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+        updateProgress();
+    });
+});
+
 </script>
 <!-- End of Progress Tracker -->
 

@@ -39,10 +39,6 @@
     text-decoration: none;
 }
 
-.navbar-brand:hover {
-    color: #fff;
-}
-
 .navbar-brand:focus {
     color:#fff;
 }
@@ -318,7 +314,7 @@
    <!-- navbar.html -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="home.html">Future<span class="logo-style">Tech</span></a>
+        <a class="navbar-brand" href="index.html">Future<span class="logo-style">Tech</span></a>
         <div class="d-flex align-items-center d-lg-none">
             <a href="#profile" class="profile-icon me-3"><i class="fas fa-user"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -358,8 +354,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const courseSections = document.querySelectorAll(".accordion-button");
 
     const courses = [
-        "Design Fundamentals", "Digital Tools & Software", "Branding & Identity Design",
-        "Print & Digital Media Design", "Motion Graphics & Animation", 
+        "AI Fundamentals", "Machine Learning & Deep Learning", "Natural Language Processing",
+        "Computer Vision", "AI Deployment & Optimization", 
         
 
     ];
@@ -629,37 +625,24 @@ document.addEventListener("DOMContentLoaded", function () {
         <div id="lessonList" class="list-group">
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="1">
-                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">Introduction to AI & Machine Learning</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=1" class="text-decoration-none">AI Fundamentals</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="2">
-                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">Supervised & Unsupervised Learning</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=2" class="text-decoration-none">Machine Learning & Deep Learning</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="3">
-                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Neural Networks & Deep Learning</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=3" class="text-decoration-none">Natural Language Processing (NLP)</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="4">
-                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">Natural Language Processing (NLP)</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=4" class="text-decoration-none">Computer Vision</a></label>
             </div>
             <div class="lesson-item list-group-item d-flex align-items-center">
                 <input type="checkbox" class="lesson-checkbox me-2" data-lesson="5">
-                <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">Computer Vision Fundamentals</a></label>
+                <label class="mb-0"><a href="lesson.html?lesson=5" class="text-decoration-none">AI Deployment & Optimization</a></label>
             </div>
-            <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="6">
-                <label class="mb-0"><a href="lesson.html?lesson=6" class="text-decoration-none">AI Model Training & Evaluation</a></label>
-            </div>
-            <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="7">
-                <label class="mb-0"><a href="lesson.html?lesson=7" class="text-decoration-none">Deploying AI Models (Flask, FastAPI)</a></label>
-            </div>
-            <div class="lesson-item list-group-item d-flex align-items-center">
-                <input type="checkbox" class="lesson-checkbox me-2" data-lesson="8">
-                <label class="mb-0"><a href="lesson.html?lesson=8" class="text-decoration-none">AI Ethics & Responsible AI</a></label>
-            </div>
-        </div>
 
         <!-- Reset Progress -->
         <div class="text-center mt-3">
