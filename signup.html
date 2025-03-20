@@ -125,18 +125,7 @@
             flex: 1;
         }
         
-        .is-invalid {
-            border: 1px solid red;
-            background-color: #ffe6e6;
-        }
         
-        .error-message {
-            font-size: 0.875rem;
-            color: red;
-            margin-top: 5px;
-            display: block;
-        
-        }
         
         @media (max-width: 480px) {
             .auth-container {
@@ -201,77 +190,121 @@
 
 <!-- Navbar End -->
 
-
-    <section class="auth-section" id="signup">
-        <div class="auth-container">
-            <h3 id="formTitle">Sign In</h3>
-            <div class="tab-buttons">
-                <button id="showSignIn" class="btn btn-primary active">Sign In</button>
-                <button id="showSignUp" class="btn btn-outline-secondary">Sign Up</button>
-            </div>
-            
-            <form id="signInForm">
-                <div class="mb-3">
-                    <label for="signInEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="signInEmail" required>
-                    <small class="error-message"></small>
-                </div>
-                <div class="mb-3">
-                    <label for="signInPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="signInPassword" required>
-                    <small class="error-message"></small>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Sign In</button>
-            </form>
-            
-            <form id="signUpForm" class="d-none">
-                <div class="mb-3">
-                    <label for="signUpName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="signUpName" required>
-                    <small class="error-message"></small>
-                </div>
-                <div class="mb-3">
-                    <label for="signUpEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="signUpEmail" required>
-                    <small class="error-message"></small>
-                </div>
-                <div class="mb-3">
-                    <label for="signUpPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="signUpPassword" required>
-                    <small class="error-message"></small>
-                </div>
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" required>
-                    <small class="error-message"></small>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Sign Up</button>
-            </form>
+<!-- Signup  & SignIn Section -->
+<section class="auth-section" id="signup">
+    <div class="auth-container">
+        <h3 id="formTitle">Sign In</h3>
+        <div class="tab-buttons">
+            <button id="showSignIn" class="btn btn-primary active">Sign In</button>
+            <button id="showSignUp" class="btn btn-outline-secondary">Sign Up</button>
         </div>
-    </section>
+        
+        <form id="signInForm">
+            <div class="mb-3">
+                <label for="signInEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signInEmail" required>
+                <small class="error-message"></small>
+            </div>
+            <div class="mb-3">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signInPassword" required>
+                <small class="error-message"></small>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        </form>
+        
+        <form id="signUpForm" class="d-none">
+            <div class="mb-3">
+                <label for="signUpName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="signUpName" required>
+                <small class="error-message"></small>
+            </div>
+            <div class="mb-3">
+                <label for="signUpEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signUpEmail" required>
+                <small class="error-message"></small>
+            </div>
+            <div class="mb-3">
+                <label for="signUpPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signUpPassword" required>
+                <small class="error-message"></small>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required>
+                <small class="error-message"></small>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Sign Up</button>
+        </form>
+    </div>
+</section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const signInForm = document.getElementById("signInForm");
-            const signUpForm = document.getElementById("signUpForm");
-            const formTitle = document.getElementById("formTitle");
-            const showSignInBtn = document.getElementById("showSignIn");
-            const showSignUpBtn = document.getElementById("showSignUp");
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const signInForm = document.getElementById("signInForm");
+        const signUpForm = document.getElementById("signUpForm");
+        const formTitle = document.getElementById("formTitle");
+        const showSignInBtn = document.getElementById("showSignIn");
+        const showSignUpBtn = document.getElementById("showSignUp");
 
-            function toggleForms(showSignIn) {
-                signInForm.classList.toggle("d-none", !showSignIn);
-                signUpForm.classList.toggle("d-none", showSignIn);
-                formTitle.textContent = showSignIn ? "Sign In" : "Sign Up";
-                showSignInBtn.classList.toggle("btn-primary", showSignIn);
-                showSignInBtn.classList.toggle("btn-outline-secondary", !showSignIn);
-                showSignUpBtn.classList.toggle("btn-primary", !showSignIn);
-                showSignUpBtn.classList.toggle("btn-outline-secondary", showSignIn);
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        function toggleForms(showSignIn) {
+            signInForm.classList.toggle("d-none", !showSignIn);
+            signUpForm.classList.toggle("d-none", showSignIn);
+            formTitle.textContent = showSignIn ? "Sign In" : "Sign Up";
+            showSignInBtn.classList.toggle("btn-primary", showSignIn);
+            showSignInBtn.classList.toggle("btn-outline-secondary", !showSignIn);
+            showSignUpBtn.classList.toggle("btn-primary", !showSignIn);
+            showSignUpBtn.classList.toggle("btn-outline-secondary", showSignIn);
+        }
+
+        showSignInBtn.addEventListener("click", () => toggleForms(true));
+        showSignUpBtn.addEventListener("click", () => toggleForms(false));
+
+        signUpForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            
+            const name = document.getElementById("signUpName").value;
+            const email = document.getElementById("signUpEmail").value;
+            const password = document.getElementById("signUpPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
             }
 
-            showSignInBtn.addEventListener("click", () => toggleForms(true));
-            showSignUpBtn.addEventListener("click", () => toggleForms(false));
+            if (users.some(user => user.email === email)) {
+                alert("Email already exists! Please sign in.");
+                return;
+            }
+
+            users.push({ email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("Sign Up Successful! Redirecting to services page...");
+            window.location.href = "services.html"; // Redirect to services page
         });
-    </script>
+
+        signInForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            
+            const email = document.getElementById("signInEmail").value;
+            const password = document.getElementById("signInPassword").value;
+
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (!user) {
+                alert("Invalid email or password!");
+                return;
+            }
+            
+            alert("Sign In Successful! Redirecting to services page...");
+            window.location.href = "services.html"; // Redirect to services page
+        });
+    });
+</script>
 
 
 <!-- Footer Section -->
